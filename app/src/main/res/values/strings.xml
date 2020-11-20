@@ -23,7 +23,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="movielist">MovieList_MVP</string>
-    <string name="agreement">I agree the terms and conditions.</string>
+    <string name="agreement">I agree the terms and conditions</string>
     <string name="clear_pad">Clear Pad</string>
     <string name="save_signature">Save Signature</string>
 </resources>
