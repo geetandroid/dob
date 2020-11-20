@@ -1,4 +1,4 @@
-package com.ytpl.jsonparsingmvp;
+package com.ytpl.jsonparsingmvp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.ytpl.jsonparsingmvp.R;
 import com.ytpl.jsonparsingmvp.contract.MovieListContract;
 import com.ytpl.jsonparsingmvp.model.Movie;
 import com.ytpl.jsonparsingmvp.presenter.MoviePresenter;
@@ -20,7 +21,7 @@ import java.util.List;
 
 //
 
-public class MainActivity extends AppCompatActivity implements MovieListContract.View {
+public class DashboardActivity extends AppCompatActivity implements MovieListContract.View {
 
     private MoviePresenter moviePresenter;
     private RecyclerView rvMovieList;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements MovieListContract
     public void setDataToRecyclerview(List<Movie> movieListArray) {
 
         movieList.addAll(movieListArray);
-        movieListAdapter = new MovieListAdapter(movieList, MainActivity.this);
+        movieListAdapter = new MovieListAdapter(movieList, DashboardActivity.this);
         rvMovieList.setAdapter(movieListAdapter);
 
     }
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements MovieListContract
     public void onResponseFailure(Throwable throwable) {
 
         Log.e("ERROR:", throwable.getMessage());
-        Toast.makeText(MainActivity.this, "Error in getting data", Toast.LENGTH_LONG).show();
+        Toast.makeText(DashboardActivity.this, "Error in getting data", Toast.LENGTH_LONG).show();
 
     }
 }

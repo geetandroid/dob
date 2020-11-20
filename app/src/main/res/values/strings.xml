@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">JsonParsingMVP</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="english">English</string>
+    <string name="arebic">Arebic</string>
+    <string name="proceed">Proceed</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="result_data">Result data :</string>
+    <string name="encrypt_using_app_instance">Encrypt using app instance</string>
+    <string name="login">LOGIN</string>
+    <string name="error_username">Mandatory field Username</string>
+    <string name="error_password">Mandatory Field Password</string>
 </resources>

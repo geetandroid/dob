@@ -1,9 +1,9 @@
-package com.ytpl.jsonparsingmvp.view;
+package com.ytpl.jsonparsingmvp.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.ytpl.jsonparsingmvp.MainActivity;
 import com.ytpl.jsonparsingmvp.utils.EncUtil;
 
 import android.util.Log;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.ytpl.jsonparsingmvp.R;
+import com.ytpl.jsonparsingmvp.utils.LocaleHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -61,6 +62,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         EncUtil.generateKey(getApplicationContext());
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
 
     private void ShortToast(String s) {
         Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
@@ -76,11 +82,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(view.getId()==R.id.action_1){
             if(action1.getTag().equals("e")){
                 if(edtUsername.getText().toString().trim().isEmpty()){
-                    setTextInputLayoutError(tlUsername,"Mandatory field Username",true);
+                    setTextInputLayoutError(tlUsername,getString(R.string.error_username),true);
                     return;
                 }
                 if(edtPassword.getText().toString().trim().isEmpty()){
-                    setTextInputLayoutError(tlPassword, "Mandetory Field Password", true);
+                    setTextInputLayoutError(tlPassword, getString(R.string.error_password), true);
                 }
                 setTextInputLayoutError(tlUsername,null,false);
                 setTextInputLayoutError(tlPassword,null,false);
@@ -109,7 +115,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         else if(view.getId() == R.id.btnLogin){
 
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, DashboardActivity.class);
             startActivity(intent);
 
         }
