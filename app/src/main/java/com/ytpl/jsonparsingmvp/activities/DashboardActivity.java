@@ -1,80 +1,59 @@
 package com.ytpl.jsonparsingmvp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.Button;
 
 import com.ytpl.jsonparsingmvp.R;
-import com.ytpl.jsonparsingmvp.contract.MovieListContract;
-import com.ytpl.jsonparsingmvp.model.Movie;
-import com.ytpl.jsonparsingmvp.presenter.MoviePresenter;
-import com.ytpl.jsonparsingmvp.view.MovieListAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-//
+public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
 
-public class DashboardActivity extends AppCompatActivity implements MovieListContract.View {
+    @BindView(R.id.btnMVPDemo)
+    Button btnMVPDemo;
 
-    private MoviePresenter moviePresenter;
-    private RecyclerView rvMovieList;
-    private List<Movie> movieList;
-    private MovieListAdapter movieListAdapter;
-    private ProgressBar pbLoading;
-    private int pageNo = 1;
-
-    private LinearLayoutManager layoutManager;
-
+    @BindView(R.id.btnSignature)
+    Button btnSignature;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        rvMovieList = findViewById(R.id.rvMovieList);
-        pbLoading = findViewById(R.id.pbLoading);
-
-        movieList = new ArrayList<>();
-        layoutManager = new LinearLayoutManager(this);
-        rvMovieList.setLayoutManager(layoutManager);
-        rvMovieList.setHasFixedSize(true);
-
-        moviePresenter = new MoviePresenter(this);
-        moviePresenter.requestDataFromServer();
-
+        setContentView(R.layout.activity_dashboard);
+        ButterKnife.bind(this);
+        btnMVPDemo.setOnClickListener(this);
+        btnSignature.setOnClickListener(this);
     }
 
-    @Override
-    public void showProgress() {
-        pbLoading.setVisibility(View.VISIBLE);
-    }
+//    @OnClick(R.id.btnMVPDemo)
+//    public void onClickMVPDemo(){
+//        Intent intent = new Intent(this, MoviesListActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    @OnClick(R.id.btnSignature)
+//    public void onClickSignature(){
+//        Intent intent = new Intent(this, SignatureActivity.class);
+//        startActivity(intent);
+//
+//    }
+
 
     @Override
-    public void hideProgress() {
-        pbLoading.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void setDataToRecyclerview(List<Movie> movieListArray) {
-
-        movieList.addAll(movieListArray);
-        movieListAdapter = new MovieListAdapter(movieList, DashboardActivity.this);
-        rvMovieList.setAdapter(movieListAdapter);
-
-    }
-
-    @Override
-    public void onResponseFailure(Throwable throwable) {
-
-        Log.e("ERROR:", throwable.getMessage());
-        Toast.makeText(DashboardActivity.this, "Error in getting data", Toast.LENGTH_LONG).show();
-
+    public void onClick(View v) {
+        if(v.getId() == R.id.btnMVPDemo){
+            Intent intent = new Intent(this, MoviesListActivity.class);
+       startActivity(intent);
+        }
+        else if(v.getId() == R.id.btnSignature){
+            Intent intent = new Intent(this, SignatureActivity.class);
+       startActivity(intent);
+        }
     }
 }
