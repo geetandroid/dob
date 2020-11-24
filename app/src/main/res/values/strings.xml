@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JsonParsingMVP</string>
+    <string name="app_name">Onboarding POC</string>
     <string name="choose_language">Choose Language</string>
     <string name="english">English</string>
     <string name="arebic">Arebic</string>
@@ -26,4 +26,12 @@
     <string name="agreement">I agree the terms and conditions</string>
     <string name="clear_pad">Clear Pad</string>
     <string name="save_signature">Save Signature</string>
+    <string name="take_signature">Take Signature</string>
+    <string name="upload_document">Upload Document</string>
+    <string name="title_activity_upload_document">UploadDocumentActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>

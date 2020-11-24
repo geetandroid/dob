@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "com.asif047.jsonparsingmvp"
+        applicationId "com.ytpl.poc"
         minSdkVersion 24
         targetSdkVersion 29
         versionCode 1

@@ -21,7 +21,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnSignature"
-        android:text="Take Signature"
+        android:text="@string/take_signature"
+        android:layout_margin="8dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnUpload"
+        android:text="@string/upload_document"
         android:layout_margin="8dp"/>
 
 </LinearLayout>
