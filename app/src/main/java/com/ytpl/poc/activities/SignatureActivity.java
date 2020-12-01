@@ -4,6 +4,7 @@ import android.Manifest;
 
 import android.app.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 
 import android.content.pm.PackageManager;
@@ -36,8 +37,10 @@ import android.widget.Toast;
 
 import com.github.gcacace.signaturepad.views.SignaturePad;
 import com.ytpl.poc.R;
+import com.ytpl.poc.utils.Const;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import java.io.FileOutputStream;
@@ -142,6 +145,7 @@ public class SignatureActivity extends Activity {
 
 
 
+
         mSaveButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -150,7 +154,10 @@ public class SignatureActivity extends Activity {
 
                 Bitmap signatureBitmap = mSignaturePad.getSignatureBitmap();
 
-                if (addJpgSignatureToGallery(signatureBitmap)) {
+
+
+
+                /*if (addJpgSignatureToGallery(signatureBitmap)) {
 
                     Toast.makeText(SignatureActivity.this, "Signature saved into the Gallery", Toast.LENGTH_SHORT).show();
 
@@ -168,7 +175,30 @@ public class SignatureActivity extends Activity {
 
                     Toast.makeText(SignatureActivity.this, "Unable to store the SVG signature", Toast.LENGTH_SHORT).show();
 
+                }*/
+
+
+                try {
+                    //Write file
+                    String filename = "bitmap.png";
+                    FileOutputStream stream = SignatureActivity.this.openFileOutput(filename, Context.MODE_PRIVATE);
+                    signatureBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
+                    //Cleanup
+                    stream.close();
+                    signatureBitmap.recycle();
+
+                    //Pop intent
+                    Intent intent = new Intent();
+                    //intent.putExtra("image","Test");
+                    intent.putExtra("image",filename);
+                    //    startActivity(intent);
+                    setResult(RESULT_OK,intent);
+                    finish();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+
 
             }
 
@@ -251,8 +281,8 @@ public class SignatureActivity extends Activity {
         boolean result = false;
 
         try {
-
-            File photo = new File(getAlbumStorageDir("SignaturePad"), String.format("Signature_%d.jpg", System.currentTimeMillis()));
+            String fileName = String.format("Signature_%d.jpg", System.currentTimeMillis());
+            File photo = new File(getAlbumStorageDir("SignaturePad"), fileName);
 
             saveBitmapToJPG(signature, photo);
 

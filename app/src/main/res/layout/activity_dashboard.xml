@@ -22,7 +22,30 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnSignature"
         android:text="@string/take_signature"
-        android:layout_margin="8dp"/>
+        android:layout_margin="8dp"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/frameLayoutImage">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_baseline_delete_24"
+            android:layout_marginStart="300dp"
+            android:id="@+id/imgBtnDelete"/>
+    <ImageView
+        android:id="@+id/imageViewSignature"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+       android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+    </FrameLayout>
 
     <Button
         android:layout_width="wrap_content"
